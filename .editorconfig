@@ -1,0 +1,136 @@
+[*]
+charset = utf-8
+
+[*.cs]
+dotnet_diagnostic.CA1000.severity = none #Do not declare static members on generic types
+dotnet_diagnostic.CA1002.severity = none ##Change to use 'Collection<T>', 'ReadOnlyCollection<T>' or 'KeyedCollection<K,V>'
+dotnet_diagnostic.CA1003.severity = none #Use generic EventHandler
+dotnet_diagnostic.CA1014.severity = none #Mark assemblies with CLSCompliant
+dotnet_diagnostic.CA1024.severity = none #Use properties where appropriate
+dotnet_diagnostic.CA1027.severity = none #Mark enums with FlagsAttribute
+dotnet_diagnostic.CA1028.severity = none #Use Int for enums
+dotnet_diagnostic.CA1030.severity = none #Use events where appropriate
+dotnet_diagnostic.CA1031.severity = none ##Do not catch general exception types
+dotnet_diagnostic.CA1032.severity = none #Implement standard exception constructors
+dotnet_diagnostic.CA1034.severity = none #Do not nest type X. Alternatively, change its accessibility so that it is not externally visible.
+dotnet_diagnostic.CA1036.severity = none #should define operator(s) '==, !=, <, <=, >, >=' since it implements IComparable
+dotnet_diagnostic.CA1040.severity = none ##Avoid empty interfaces
+dotnet_diagnostic.CA1051.severity = none #Do not declare visible instance fields
+dotnet_diagnostic.CA1054.severity = none #URI parameters should not be strings
+dotnet_diagnostic.CA1055.severity = none #URI return values should not be strings
+dotnet_diagnostic.CA1056.severity = none #URI properties should not be strings
+dotnet_diagnostic.CA1062.severity = none #Validate arguments of public methods
+dotnet_diagnostic.CA1063.severity = none ##Implement IDisposable correctly
+dotnet_diagnostic.CA1064.severity = none #Exceptions should be public
+dotnet_diagnostic.CA1068.severity = none #CancellationToken parameters must come last
+dotnet_diagnostic.CA1200.severity = none #Avoid using cref tags with a prefix
+dotnet_diagnostic.CA1303.severity = none #Do not pass literals as localized parameters
+dotnet_diagnostic.CA1304.severity = none #Specify CultureInfo
+dotnet_diagnostic.CA1305.severity = none #Specify IFormatProvider
+dotnet_diagnostic.CA1307.severity = none #Specify StringComparison for clarity
+dotnet_diagnostic.CA1308.severity = none ##Normalize strings to uppercase
+dotnet_diagnostic.CA1309.severity = none #Use ordinal StringComparison
+dotnet_diagnostic.CA1310.severity = none #Specify StringComparison for correctness
+dotnet_diagnostic.CA1401.severity = none #P/Invokes should not be visible
+dotnet_diagnostic.CA1419.severity = none #Provide a parameterless constructor that is as visible as the containing type for concrete types derived from 'System.Runtime.InteropServices.SafeHandle'
+dotnet_diagnostic.CA1508.severity = none ##Avoid dead conditional code
+dotnet_diagnostic.CA1700.severity = none ##Do not name enum values 'Reserved'
+dotnet_diagnostic.CA1707.severity = none #Identifiers should not contain underscores
+dotnet_diagnostic.CA1708.severity = none ##Identifiers should differ by more than case
+dotnet_diagnostic.CA1710.severity = none ##Identifiers should have correct suffix
+dotnet_diagnostic.CA1711.severity = none ##Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1712.severity = none ##Do not prefix enum values with type name
+dotnet_diagnostic.CA1715.severity = none ##Identifiers should have correct prefix
+dotnet_diagnostic.CA1716.severity = none ##Identifiers should not match keywords
+dotnet_diagnostic.CA1720.severity = none ##Identifiers should not contain type names
+dotnet_diagnostic.CA1721.severity = none ##Property names should not match get methods
+dotnet_diagnostic.CA1724.severity = none ##Type names should not match namespaces
+dotnet_diagnostic.CA1725.severity = none ##Parameter names should match base declaration
+dotnet_diagnostic.CA1812.severity = none ##Avoid uninstantiated internal classes, Info: Ausgehebelt durch InternalsVisibleToAttribute für Unittests
+dotnet_diagnostic.CA1816.severity = none #Call GC.SuppressFinalize correctly
+dotnet_diagnostic.CA1819.severity = none #Properties should not return arrays
+dotnet_diagnostic.CA1822.severity = none ##Mark members as static
+dotnet_diagnostic.CA1823.severity = none ##Avoid unused private fields
+dotnet_diagnostic.CA1824.severity = none #Mark assemblies with NeutralResourcesLanguageAttribute
+dotnet_diagnostic.CA1848.severity = none #Use the LoggerMessage delegates
+dotnet_diagnostic.CA2008.severity = none #Do not create tasks without passing a TaskScheduler
+dotnet_diagnostic.CA2101.severity = none ##Specify marshalling for P/Invoke string arguments
+dotnet_diagnostic.CA2109.severity = none #Review visible event handlers
+dotnet_diagnostic.CA2201.severity = none #Do not raise reserved exception types
+dotnet_diagnostic.CA2208.severity = none #Instantiate argument exceptions correctly
+dotnet_diagnostic.CA2225.severity = none #Operator overloads have named alternates
+dotnet_diagnostic.CA2227.severity = none #Collection properties should be read only
+dotnet_diagnostic.CA2229.severity = none #Implement serialization constructors
+dotnet_diagnostic.CA2253.severity = suggestion #? Logging: Named placeholders should not be numeric values
+dotnet_diagnostic.CA2300.severity = none #Do not use insecure deserializer BinaryFormatter
+dotnet_diagnostic.CA3003.severity = none #Review code for file path injection vulnerabilities
+dotnet_diagnostic.CA5351.severity = none #Do Not Use Broken Cryptographic Algorithms
+dotnet_diagnostic.CA5379.severity = none #Ensure key derivation function algorithm is sufficiently strong
+dotnet_diagnostic.CA5387.severity = none #Use at least 100000 iterations when deriving a cryptographic key from a password.
+dotnet_diagnostic.CA5390.severity = none #Do not hard-code encryption key
+dotnet_diagnostic.CA5392.severity = none #Use DefaultDllImportSearchPaths attribute for P/Invokes
+dotnet_diagnostic.CA5394.severity = none #Random is an insecure random number generator
+
+dotnet_diagnostic.CA1311.severity = none #Error CA1311: Geben Sie eine Kultur an oder verwenden Sie eine unveränderliche Version, um eine implizite Abhängigkeit von der aktuellen Kultur zu vermeiden (43, 38)
+
+
+
+#Dispose objects before losing scope: excluded_type
+dotnet_code_quality.CA2000.excluded_symbol_names = CancellationTokenSource|XmlReader|XmlTextReader|ByteArrayContent|StringContent
+dotnet_code_quality.CA1001.excluded_symbol_names = ReaderWriterLockSlim|Timer|CancellationTokenSource|IntervalTimer|CancellationTokenSourceEx
+dotnet_code_quality.CA1008.additional_enum_none_names = Auto|Unknown
+
+dotnet_diagnostic.IDE0008.severity = none #UseExplicitType
+dotnet_diagnostic.IDE0010.severity = none #PopulateSwitchStatement
+dotnet_diagnostic.IDE0011.severity = none #AddBraces
+dotnet_diagnostic.IDE0016.severity = none #UseThrowExpression
+dotnet_diagnostic.IDE0017.severity = none #UseObjectInitializer
+dotnet_diagnostic.IDE0021.severity = none #UseExpressionBodyForConstructors
+dotnet_diagnostic.IDE0022.severity = none #UseExpressionBodyForMethods
+dotnet_diagnostic.IDE0023.severity = none #UseExpressionBodyForConversionOperators
+dotnet_diagnostic.IDE0024.severity = none #UseExpressionBodyForOperators
+dotnet_diagnostic.IDE0025.severity = none #UseExpressionBodyForProperties
+dotnet_diagnostic.IDE0027.severity = none #UseExpressionBodyForAccessors
+dotnet_diagnostic.IDE0028.severity = none #UseCollectionInitializer
+dotnet_diagnostic.IDE0031.severity = none #UseNullPropagation
+dotnet_diagnostic.IDE0032.severity = none #UseAutoProperty
+dotnet_diagnostic.IDE0034.severity = none #UseDefaultLiteral
+dotnet_diagnostic.IDE0039.severity = none #UseLocalFunction
+dotnet_diagnostic.IDE0040.severity = none #AddAccessibilityModifiers
+dotnet_diagnostic.IDE0042.severity = none #UseDeconstruction
+dotnet_diagnostic.IDE0045.severity = none #UseConditionalExpressionForAssignment
+dotnet_diagnostic.IDE0046.severity = none #UseConditionalExpressionForReturn
+dotnet_diagnostic.IDE0048.severity = none #AddRequiredParentheses
+dotnet_diagnostic.IDE0052.severity = none ##RemoveUnreadMembers
+dotnet_diagnostic.IDE0054.severity = none #UseCompoundAssignment
+#dotnet_diagnostic.IDE0055.severity = none #Formatting
+dotnet_diagnostic.IDE0056.severity = none #UseIndexOperator
+dotnet_diagnostic.IDE0057.severity = none #UseRangeOperator
+dotnet_diagnostic.IDE0058.severity = none ##ExpressionValueIsUnused
+dotnet_diagnostic.IDE0060.severity = none ##UnusedParameter
+dotnet_diagnostic.IDE0061.severity = none #UseExpressionBodyForLocalFunctions
+dotnet_diagnostic.IDE0063.severity = none #UseSimpleUsingStatement
+dotnet_diagnostic.IDE0066.severity = none #ConvertSwitchStatementToExpression
+dotnet_diagnostic.IDE0074.severity = none #UseCoalesceCompoundAssignment
+dotnet_diagnostic.IDE0075.severity = none #SimplifyConditionalExpression
+dotnet_diagnostic.IDE0078.severity = none #UsePatternCombinators
+dotnet_diagnostic.IDE0083.severity = none #UseNotPattern
+dotnet_diagnostic.IDE0090.severity = none #UseNew
+dotnet_diagnostic.IDE0100.severity = none #RemoveRedundantEquality
+dotnet_diagnostic.IDE0130.severity = none #NamespaceDoesNotMatchFolderStructure
+dotnet_diagnostic.IDE0150.severity = none
+dotnet_diagnostic.IDE0160.severity = none #Namespace declaration preferences
+dotnet_diagnostic.IDE0180.severity = none
+dotnet_diagnostic.IDE0210.severity = none
+dotnet_diagnostic.IDE0220.severity = none
+dotnet_diagnostic.IDE0241.severity = suggestion #Remove unnecessary nullable directive
+dotnet_diagnostic.IDE1005.severity = none #InvokeDelegateWithConditionalAccess
+dotnet_diagnostic.IDE1006.severity = none #NamingRule
+
+#dotnet_diagnostic.IDE0079.severity = error # Remove unnecessary suppression
+
+#Resharper/Rider
+resharper_generic_enumerator_not_disposed_highlighting = error
+resharper_suspicious_type_conversion_global_highlighting = error
+resharper_structured_message_template_problem_highlighting = error
+resharper_possible_multiple_enumeration_highlighting = error

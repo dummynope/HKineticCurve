@@ -1,0 +1,22 @@
+<Project>
+    <PropertyGroup>
+        <InformationalVersion>2023.DevBuild</InformationalVersion>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <!--Framework-->
+        <LangVersion>default</LangVersion>
+        <TargetFramework>net7.0</TargetFramework>
+
+        <!--Code Quality-->
+        <Nullable>enable</Nullable>
+        <Features>strict</Features>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <WarningLevel>9999</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <AnalysisMode>All</AnalysisMode>
+        <AnalysisLevelStyle>latest-All</AnalysisLevelStyle>
+    </PropertyGroup>
+
+
+</Project>
