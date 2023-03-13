@@ -137,14 +137,11 @@ public partial class MainWindow : Window
                 List<double> xValues = new List<double>(records.Count);
                 List<double> yValues = new List<double>(records.Count);
 
-                double ySum = 0;
                 for (var index = 0; index < records.Count - 1; index++)
                 {
-                    var record_t0 = records[index];
                     var record_t1 = records[index + 1];
 
-                    //var t_0 = record_t0.DateTime;
-                    var P_1 = record_t0.Pressure;
+                    var P_1 = records[0].Pressure;
                     var P_2 = record_t1.Pressure;
                     var T_Res = record_t1.Temp;
 
@@ -161,18 +158,16 @@ public partial class MainWindow : Window
                     xValues.Add(x);
 
                     var y = _h2ViewModel.Calc(P_1, P_2, T_Res, T_AC);
-                    ySum += y;
-                    yValues.Add(ySum);
+                    yValues.Add(y);
 
                 }
-                //(double[] smoothXs, double[] smoothYs) = ScottPlot.Statistics.Interpolation.Cubic.InterpolateXY(xValues.ToArray(), yValues.ToArray(), 2048);
-                //plt.AddScatterLines(smoothXs, smoothYs);
+
                 plt.AddScatter(xValues.ToArray(), yValues.ToArray());
             }
 
-            plt.Title("Date/Res");
-            plt.XLabel("Seconds");
-            plt.YLabel("Res");
+            plt.Title("Kinetic data curve");
+            plt.XLabel("Time [s]");
+            plt.YLabel("Capacity [w.%]");
 
             WpfPlot1.Refresh();
         }
