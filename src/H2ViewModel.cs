@@ -67,6 +67,8 @@ public class H2ViewModel : ObservableObject
     [Notify] public double mass_MgFe { get; set; } = 1.0; //%[g]
     [Notify] public double vol_AC { get; set; } = 0.094; //%[l]
     [Notify] public double vol_Res { get; set; } = 0.497; //%[l]
+
+    [Notify] public double TempThreshold { get; set; }
     public double Calc(double P_1, double P_2, double T_Res, double T_AC)
     {
         var deltPres_dehy = (P_2 * BarToPA) - (P_1 * BarToPA);// * 1E5;//10^5;
@@ -163,12 +165,13 @@ public class H2ViewModel : ObservableObject
     public ICommand LoadDataCommand { get; }
     public ICommand LoadHDataCommand { get; }
 
-    public static Record? FindClosestRecord(IReadOnlyCollection<Record> records, DateTime query, TimeSpan maxDiff)
+
+    public static Record? FindClosestRecord(List<Record> records, DateTime query, TimeSpan maxDiff)
     {
         Record? closest = null;
         long min = long.MaxValue;
         var queryTicks = query.Ticks;
-        foreach (Record record in records)
+        foreach (var record in records)
         {
             var diff = Math.Abs(record.DateTime.Ticks - queryTicks);
 

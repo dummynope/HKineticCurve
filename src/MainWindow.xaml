@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hKineticCurve="clr-namespace:HKineticCurve"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance local:H2ViewModel}"
+        d:DataContext="{d:DesignInstance hKineticCurve:H2ViewModel}"
 
         Title="MainWindow" Height="450" Width="800">
     <DockPanel Margin="5" LastChildFill="true">
@@ -175,6 +176,15 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock   >vol_Res [l]</TextBlock>
                 <TextBox Grid.Column="1"   Text="{Binding Path=vol_Res}" />
+            </Grid>
+            <Separator Margin="0,5,0,5"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition SharedSizeGroup="SecondColumn"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock   >Temp Threshold</TextBlock>
+                <TextBox Grid.Column="1"   Text="{Binding Path=TempThreshold}" />
             </Grid>
 
             <StackPanel DockPanel.Dock="Bottom">

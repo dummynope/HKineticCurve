@@ -119,8 +119,11 @@ public partial class MainWindow : Window
 
     private void PlotResults(object sender, RoutedEventArgs e)
     {
+        var previousCursors = Cursors.Arrow;
         try
         {
+            previousCursors = Cursor;
+            Cursor = Cursors.Wait;
             WpfPlot1.Plot.Clear();
             var plt = WpfPlot1.Plot;
 
@@ -137,24 +140,38 @@ public partial class MainWindow : Window
                 List<double> xValues = new List<double>(records.Count);
                 List<double> yValues = new List<double>(records.Count);
 
+                DateTime offset = DateTime.MinValue;
                 for (var index = 0; index < records.Count - 1; index++)
                 {
+                    //offset = records[1].DateTime;
                     var record_t1 = records[index + 1];
 
                     var P_1 = records[0].Pressure;
                     var P_2 = record_t1.Pressure;
                     var T_Res = record_t1.Temp;
 
-                    var closestHRecord = H2ViewModel.FindClosestRecord(_h2ViewModel.HRecords, record_t1.DateTime, maxDiff);
+                    var closestHRecord =
+                        H2ViewModel.FindClosestRecord(_h2ViewModel.HRecords, record_t1.DateTime, maxDiff);
 
                     if (closestHRecord == null)
                     {
                         continue;
                     }
 
+                    if (closestHRecord.Temp < _h2ViewModel.TempThreshold)
+                    {
+                        continue;
+                    }
+
+                    if (offset == DateTime.MinValue)
+                    {
+                        offset = record_t1.DateTime;
+                    }
+
+
                     var T_AC = closestHRecord.Temp;
 
-                    var x = (record_t1.DateTime - records[1].DateTime).TotalSeconds;
+                    var x = (record_t1.DateTime - offset).TotalSeconds;
                     xValues.Add(x);
 
                     var y = _h2ViewModel.Calc(P_1, P_2, T_Res, T_AC);
@@ -174,6 +191,10 @@ public partial class MainWindow : Window
         catch (Exception exception)
         {
             MessageBox.Show(exception.Message);
+        }
+        finally
+        {
+            Cursor = previousCursors;
         }
     }
 }
