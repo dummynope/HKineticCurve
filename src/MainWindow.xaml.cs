@@ -133,6 +133,7 @@ public partial class MainWindow : Window
                 return;
             }
 
+            int labelCounter = 0;
             var maxDiff = TimeSpan.FromSeconds(29);
             var recordsLists = _h2ViewModel.SplitRecordsByThresholds();
             foreach (var records in recordsLists)
@@ -140,13 +141,14 @@ public partial class MainWindow : Window
                 List<double> xValues = new List<double>(records.Count);
                 List<double> yValues = new List<double>(records.Count);
 
+                double P_1 = double.MinValue;
                 DateTime offset = DateTime.MinValue;
                 for (var index = 0; index < records.Count - 1; index++)
                 {
                     //offset = records[1].DateTime;
                     var record_t1 = records[index + 1];
 
-                    var P_1 = records[0].Pressure;
+                    //var P_1 = records[0].Pressure;
                     var P_2 = record_t1.Pressure;
                     var T_Res = record_t1.Temp;
 
@@ -163,6 +165,19 @@ public partial class MainWindow : Window
                         continue;
                     }
 
+                    if (P_1 == double.MinValue)
+                    {
+                        if (_h2ViewModel.TempThreshold != 0)
+                        {
+                            P_1 = records[index].Pressure;
+                        }
+                        else
+                        {
+                            P_1 = records[0].Pressure;
+                        }
+                    }
+
+
                     if (offset == DateTime.MinValue)
                     {
                         offset = record_t1.DateTime;
@@ -178,11 +193,13 @@ public partial class MainWindow : Window
                     yValues.Add(y);
 
                 }
+                labelCounter++;
 
-                plt.AddScatter(xValues.ToArray(), yValues.ToArray());
+                plt.AddScatter(xValues.ToArray(), yValues.ToArray(), label: $"{_h2ViewModel.RecordName} {labelCounter}");
             }
 
             plt.Title("Kinetic data curve");
+            plt.Legend();
             plt.XLabel("Time [s]");
             plt.YLabel("Capacity [w.%]");
 

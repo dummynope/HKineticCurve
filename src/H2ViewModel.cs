@@ -31,6 +31,9 @@ public class H2ViewModel : ObservableObject
     public double PressureThresholdMin { get; set; }
     public double PressureThresholdMax { get; set; } = 1.55;
 
+    public int MinDuration { get; set; } = 3600;
+    public double MinPressureRange { get; set; } = 1;
+
     public H2ViewModel()
     {
         LoadDataCommand = new RelayCommand(LoadData);
@@ -193,7 +196,23 @@ public class H2ViewModel : ObservableObject
         return closest;
     }
 
-    public List<List<Record>> SplitRecordsByThresholds()
+    private bool IsValid(List<Record> current)
+    {
+        if (current.Count == 0)
+        {
+            return false;
+        }
+        bool isDateRangeValid = current.Max(o => o.DateTime) - current.Min(o => o.DateTime) >= TimeSpan.FromSeconds(MinDuration);
+
+        if (isDateRangeValid == false)
+            return false;
+
+        var isPressureRangeValid = current.Max(o => o.Pressure) - current.Min(o => o.Pressure) >= MinPressureRange;
+
+        return isPressureRangeValid;
+    }
+
+    public IEnumerable<List<Record>> SplitRecordsByThresholds()
     {
         List<List<Record>> recordsLists = new();
         List<Record> current = new List<Record>();
@@ -201,6 +220,11 @@ public class H2ViewModel : ObservableObject
         //Teilabschnitte finden
         foreach (var record in Records)
         {
+            //if (record.DateTime < new DateTime(2023, 3, 17))
+            //{
+            //    continue;
+            //}
+
             if (record.Pressure >= PressureThresholdMin &&
                 record.Pressure <= PressureThresholdMax)
             {
@@ -225,11 +249,34 @@ public class H2ViewModel : ObservableObject
         for (var index = 0; index < recordsLists.Count; index++)
         {
             var recordsList = recordsLists[index];
-            var min = recordsList.Min(o => o.Pressure);
-            int minStartIndex = recordsList.FindIndex(o => o.Pressure == min);
-            recordsLists[index] = recordsList.Skip(minStartIndex).ToList();
+
+            var firstMin = recordsList.FindIndex(o => o.Pressure < 0.1);
+            recordsList = recordsList.Skip(firstMin).ToList();
+
+            var max = recordsList.Max(o => o.Pressure);
+            var endTrimmedIndex = recordsList.FindLastIndex(o => o.Pressure == max);
+            var endTrimmed = recordsList.Take(endTrimmedIndex).ToList();
+
+            if (endTrimmed.Count == 0)
+            {
+                recordsLists[index] = endTrimmed;
+                continue;
+            }
+
+            var min = endTrimmed.Min(o => o.Pressure);
+            int minStartIndex = endTrimmed.FindIndex(o => o.Pressure == min);
+            recordsLists[index] = endTrimmed.Skip(minStartIndex).ToList();
+
+
         }
 
-        return recordsLists;
+        foreach (var recordsList in recordsLists)
+        {
+            if (!recordsList.Any())
+                continue;
+
+            if (IsValid(recordsList))
+                yield return recordsList;
+        }
     }
 }

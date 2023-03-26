@@ -6,7 +6,7 @@
         xmlns:hKineticCurve="clr-namespace:HKineticCurve"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance hKineticCurve:H2ViewModel}"
-
+WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel Margin="5" LastChildFill="true">
 
@@ -122,6 +122,26 @@
                 <TextBlock   >Pressure Threshold Max</TextBlock>
                 <TextBox Grid.Column="1"   Text="{Binding Path=PressureThresholdMax}" />
             </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition SharedSizeGroup="SecondColumn"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock   >MinDuration [s]</TextBlock>
+                <TextBox Grid.Column="1"   Text="{Binding Path=MinDuration}" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition SharedSizeGroup="SecondColumn"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock   >MinPressureRange </TextBlock>
+                <TextBox Grid.Column="1"   Text="{Binding Path=MinPressureRange}" />
+            </Grid>
+
+
 
             <StackPanel DockPanel.Dock="Bottom">
                 <Button Content="Plot Threshold" HorizontalAlignment="Left" VerticalAlignment="Top" Click="PlotThresholds"/>
